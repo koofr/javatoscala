@@ -1,0 +1,40 @@
+@(converted: String)
+
+@js = {
+  var $editor = $('#converted');
+
+  var heightUpdate = function() {
+    var newHeight =
+              editor.getSession().getScreenLength()
+              * editor.renderer.lineHeight
+              + editor.renderer.scrollBar.getWidth();
+
+    $editor.height(newHeight.toString() + "px");
+
+    editor.resize();
+  };
+
+  $editor.removeClass('loading');
+
+  var editor = ace.edit("converted");
+  editor.setFontSize(15);
+  editor.getSession().setMode("ace/mode/scala");
+
+  editor.getSession().on('change', function(){
+    heightUpdate();
+  });
+
+  heightUpdate();
+}
+
+@main(js = Some(js)) {
+
+  <h4>Scala:</h4>
+
+  <div class="loading" id="converted">@converted</div>
+
+  <br>
+
+  <a href="/" class="btn btn-default btn-lg btn-block">Do it again!</a>
+
+}

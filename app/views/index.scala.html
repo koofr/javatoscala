@@ -1,0 +1,50 @@
+@(convertForm: Form[String])
+
+@import helper._
+
+@js = {
+  var $editor = $('#original');
+
+  var heightUpdate = function() {
+    var newHeight =
+              editor.getSession().getScreenLength()
+              * editor.renderer.lineHeight
+              + editor.renderer.scrollBar.getWidth();
+
+    $editor.height(newHeight.toString() + "px");
+
+    editor.resize();
+  };
+
+  var editor = ace.edit("original");
+  $editor.show();
+
+  var textarea = $('textarea[name="original"]').hide();
+
+  editor.setFontSize(15);
+  editor.getSession().setMode("ace/mode/java");
+  editor.getSession().setValue(textarea.val());
+
+  editor.getSession().on('change', function(){
+    heightUpdate();
+    textarea.val(editor.getSession().getValue());
+  });
+
+  heightUpdate();
+}
+
+@main(js = Some(js)) {
+
+  @convertForm.globalError.map { error =>
+    <div class="alert alert-danger">
+      @error.message
+    </div>
+  }
+
+  @form(routes.Application.convert, args = 'id -> "convert-form") {
+    <textarea name="original" class="form-control" rows="10">@convertForm("original").value.getOrElse("")</textarea>
+    <div id="original"></div>
+    <br>
+    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Convert">
+  }
+}

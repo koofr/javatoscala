@@ -1,0 +1,8 @@
+{
+  "name": "javatoscala",
+  "description": "Online Java to Scala converter",
+  "repository": "https://github.com/koofr/javatoscala",
+  "keywords": ["play", "scala", "java"],
+  "success_url": "/",
+  "addons": []
+}

@@ -3,7 +3,7 @@ package models
 import scala.util.Try
 import java.io.ByteArrayInputStream
 import com.mysema.scalagen.Converter
-import japa.parser.JavaParser
+import com.github.javaparser.JavaParser
 
 object Conversion {
 

@@ -1,5 +1,6 @@
 package controllers
 
+import javax.inject._
 import scala.util._
 import play.api._
 import play.api.mvc._
@@ -7,7 +8,8 @@ import play.api.data._
 import play.api.data.Forms._
 import models.Conversion
 
-object Application extends Controller {
+@Singleton
+class Application @Inject() extends Controller {
 
   val exampleCode = """
     |package hello;

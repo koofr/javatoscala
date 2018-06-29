@@ -7,6 +7,11 @@ http://javatoscala.com
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
+## Usage
+- Clone the repo
+- Install sbt
+- `sbt run`
+
 ## Contributors
 
 - [Luka Zakrajšek](https://github.com/bancek) ([Koofr](http://koofr.eu))
